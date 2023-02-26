@@ -27,6 +27,7 @@ export const GitCommand = () => {
     return (
         <>
             <Box height={"97%"} width={"94%"} border={2} borderRadius={2} sx={{ borderColor: "#d9d9d9", color: "#d9d9d9", overflow: "auto" }}>
+                <Button onClick={() => { console.log(commandLog, dataPos, commandErr) }} >get command log</Button>
                 {command.map((e, i) => {
                     return (
                         <div key={i} >
