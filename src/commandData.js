@@ -26,7 +26,7 @@ export const command = [
                 }))
                 setCommandErr((prev) => [...prev, ""])
             } else {
-                setCommandErr((prev) => [...prev, ": errorやで 今はこのコマンドできへんで"])
+                setCommandErr((prev) => [...prev, ": error ステージングされたファイルが見つかりません"])
             }
         }
 
@@ -44,7 +44,7 @@ export const command = [
                 }))
                 setCommandErr((prev) => [...prev, ""])
             } else {
-                setCommandErr((prev) => [...prev, ": errorやで 今はこのコマンドできへんで"])
+                setCommandErr((prev) => [...prev, ": error commitされたファイルが見つかりません "])
             }
         }
     },

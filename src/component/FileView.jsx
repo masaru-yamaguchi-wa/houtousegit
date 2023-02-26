@@ -8,7 +8,6 @@ import { dataPositionAtom } from '../Atoms';
 
 export const FileView = () => {
     const [dataPos, setDataPos] = useAtom(dataPositionAtom)
-    console.log(dataPos)
     const addFile = () => {
         return (setDataPos((prev) => {
             return [...prev, { id: dataPos.length + 1, name: `test${dataPos.length + 1}.txt`, position: 1 }]
