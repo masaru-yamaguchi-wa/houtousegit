@@ -21,9 +21,13 @@ export const GitCommand = () => {
     };
     const handleClose = (e) => {
         setOpen(false)
+
+    };
+    const commandButtonEve = () => {
         setCommandLog((prev) => [...prev, `> ${command[commandIndex].command} ${command[commandIndex].target}`])
         command[commandIndex].func(setDataPos, dataPos, setCommandErr)
-    };
+        handleClose()
+    }
     return (
         <>
             <Box height={"97%"} width={"94%"} border={2} borderRadius={2} sx={{ borderColor: "#d9d9d9", color: "#d9d9d9", overflow: "auto" }}>
@@ -58,7 +62,7 @@ export const GitCommand = () => {
                                     <p id="child-modal-description">
                                         コマンドオプションを選択してください
                                     </p>
-                                    <Button variant="outlined" sx={{ textTransform: "none" }} onClick={handleClose} >{command[commandIndex].target === "" ? "Just do it's" : `target:${command[commandIndex].target}`} </Button>
+                                    <Button variant="outlined" sx={{ textTransform: "none" }} onClick={commandButtonEve} >{command[commandIndex].target === "" ? "Just do it's" : `target:${command[commandIndex].target}`} </Button>
                                 </Box>
                             </Modal>
                         </div>
