@@ -1,11 +1,11 @@
 import Paper from '@mui/material/Paper';
 import { useAtom } from 'jotai';
-import { dataPosition } from '../Atoms';
+import { dataPositionAtom } from '../Atoms';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Stack from '@mui/material/Stack';
 
 export const RepoMove = () => {
-    const [dataPos] = useAtom(dataPosition)
+    const [dataPos] = useAtom(dataPositionAtom)
     return (
         <>
             <Paper variant="outlined" sx={{ bgcolor: "#202020", color: "#D9D9D9", border: 2, borderColor: "#D9D9D9", borderRadius: "5%", height: "80%", width: "calc(100%/5)" }}>

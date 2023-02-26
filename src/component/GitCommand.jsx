@@ -4,17 +4,25 @@ import Typography from '@mui/material/Typography';
 import { command } from "../commandData"
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import { useAtom } from "jotai"
+import { commandLogAtom, dataPositionAtom, commandErrAtom } from "../Atoms"
 
 export const GitCommand = () => {
     const [open, setOpen] = useState(false);
     const [commandIndex, setCommandIndex] = useState(0);
+
+    const [commandLog, setCommandLog] = useAtom(commandLogAtom)
+    const [dataPos, setDataPos] = useAtom(dataPositionAtom)
+    const [commandErr, setCommandErr] = useAtom(commandErrAtom)
+
     const handleOpen = (e) => {
         setCommandIndex(e.currentTarget.id)
         setOpen(true)
     };
     const handleClose = (e) => {
         setOpen(false)
-        command[commandIndex].func("on close function")
+        setCommandLog((prev) => [...prev, `> ${command[commandIndex].command} ${command[commandIndex].target}`])
+        command[commandIndex].func(setDataPos, dataPos, setCommandErr)
     };
     return (
         <>
@@ -47,7 +55,7 @@ export const GitCommand = () => {
                                 >
                                     <h2 id="child-modal-title">対象ファイル/リポジトリ/ブランチの選択</h2>
                                     <p id="child-modal-description">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.{i}
+                                        コマンドオプションを選択してください
                                     </p>
                                     <Button variant="outlined" sx={{ textTransform: "none" }} onClick={handleClose} >{command[commandIndex].target === "" ? "Just do it's" : `target:${command[commandIndex].target}`} </Button>
                                 </Box>

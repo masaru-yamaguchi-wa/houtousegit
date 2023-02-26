@@ -1,3 +1,4 @@
+
 export const command = [
 
     {
@@ -6,7 +7,11 @@ export const command = [
         "option": "",
         "detail": "work treeからファイルをステージングすることが可能",
         "detail2": "git add <targetFile>",
-        "func": (position) => { console.log(position) }
+        "func": (func) => {
+            func((prev) => prev.map((e, i) => {
+                return (i === 0 ? { id: e.id, name: e.name, position: 2 } : e)
+            }))
+        }
     },
     {
         "command": "git commit -m",
@@ -14,7 +19,16 @@ export const command = [
         "option": "",
         "detail": "stageからlocal repoにあげることが可能。messageは必須",
         "detail2": "git commit -m <message>",
-        "func": (position) => { console.log(position) }
+        "func": (func, dataPos, setCommandErr) => {
+            if (dataPos[0].position === 2) {
+                func((prev) => prev.map((e, i) => {
+                    return (i === 0 ? { id: e.id, name: e.name, position: 3 } : e)
+                }))
+                setCommandErr((prev) => [...prev, ""])
+            } else {
+                setCommandErr((prev) => [...prev, ": errorやで 今はこのコマンドできへんで"])
+            }
+        }
 
     },
     {
@@ -23,7 +37,16 @@ export const command = [
         "option": "main",
         "detail": "local repo から remote repo にあげることが可能",
         "detail2": "git push <targetBranch> <sender branch>",
-        "func": (position) => { console.log(position) }
+        "func": (func, dataPos, setCommandErr) => {
+            if (dataPos[0].position === 3) {
+                func((prev) => prev.map((e, i) => {
+                    return (i === 0 ? { id: e.id, name: e.name, position: 4 } : e)
+                }))
+                setCommandErr((prev) => [...prev, ""])
+            } else {
+                setCommandErr((prev) => [...prev, ": errorやで 今はこのコマンドできへんで"])
+            }
+        }
     },
     {
         "command": "git pull",
